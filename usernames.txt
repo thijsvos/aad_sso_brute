@@ -1,0 +1,5 @@
+adm-firstname.lastname@company.onmicrosoft.com::company.tld
+first.last@company.tld
+first.last@contoso.com
+invalid_email@super_invalid_tennant_name.com
+invalid_email@invalid-tennant-name.com
