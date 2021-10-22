@@ -4,6 +4,9 @@ import argparse
 from rich.theme import Theme
 from rich.console import Console
 import sys
+import time
+
+# TODO:
 
 parser = argparse.ArgumentParser(description='Brute force tool to enumerate emails and spray passwords.')
 parser.add_argument('username_file', help="File containing usernames (e.g. 'first.last@contoso.com' or 'admin-first.last@contoso.onmicrosoft.com::tennant-name.com').")
@@ -11,6 +14,7 @@ parser.add_argument('password_file', help="File containing passwords.")
 parser.add_argument('--timeout', default=3, help='Timeout period for every try/request.')
 parser.add_argument('-v', '--verbose', action="store_true", help='Verbose output.')
 parser.add_argument('--guid', default="7c9e6679-7425-40de-944b-e07fc1f90ae7", help='Device guid for the SSO  request.')
+parser.add_argument('-ps', '--password_sleep', default=10, help='Sleep time in seconds between passwords.')
 
 mxg = parser.add_mutually_exclusive_group(required=True)
 mxg.add_argument('--continue_brute', action="store_true", help='Brute force continues after locked out accounts were found.')
@@ -169,6 +173,7 @@ def main():
     console.print(f"[INFO]: Starting brute force..", style="cyan")
 
     for password in password_list:
+        time.sleep(arguments.password_sleep)
 
         users_to_request = [x for x in username_list if x not in successful_users]
         users_to_request = [x for x in users_to_request if x not in locked_users]
