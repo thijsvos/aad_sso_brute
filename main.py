@@ -136,7 +136,7 @@ def get_credentials_from_response(response_string):
     return username_from_request_in_response, password_from_request_in_response
 
 
-# The tennant cant be different than the domain in the e-mailaddress of the user.
+# The tennant can be different than the domain in the e-mailaddress of the user.
 # So people can provide the actual tennant name using '::', for example: test@mycompany.tld::contoso.com
 # contoso.com will therefore be the real_tennant_name
 def get_real_tennant_name(username_line):
